@@ -119,21 +119,28 @@
 
       <!-- ✅ LINE -->
       <a href="https://line.me/R/ti/p/@h1788"
-         onclick="trackLead();">
-        <img class="btnImg" src="static/picture/10月9日14-e1760416892526-1024x303.png" alt="加LINE領優惠" loading="eager" decoding="async">
-      </a>
+   onclick="return trackLeadAndGo(event, this.href);">
+  <img class="btnImg" src="static/picture/10月9日14-e1760416892526-1024x303.png"
+       alt="加LINE領優惠" loading="eager" decoding="async">
+</a>
 
-    </main>
-  </div>
+<script>
+  function trackLeadAndGo(e, url) {
+    try {
+      if (typeof fbq === "function") {
+        fbq("track", "Lead", {
+          content_name: "Click_LINE",
+          destination: "line.me",
+          line_id: "@h1788"
+        });
+      }
+    } catch(err) {}
 
-  <script>
-    function trackLead() {
-      try {
-        if (typeof fbq === "function") {
-          fbq("track", "Lead");
-        }
-      } catch(err) {}
-    }
-  </script>
+    // 阻止立刻跳走，給像素一點時間送出
+    if (e && e.preventDefault) e.preventDefault();
+    setTimeout(() => { window.location.href = url; }, 200);
+    return false;
+  }
+</script>
 </body>
 </html>
