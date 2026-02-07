@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>正在跳轉 LINE…</title>
+
+  <!-- 1) meta refresh（保底跳轉） -->
+  <meta http-equiv="refresh" content="1.2;url=https://line.me/R/app/2008156723-E1ynJx1P?redeemcode=VIP7777" />
+
+  <!-- Facebook Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2178925166179465');
+    fbq('track', 'PageView');
+  </script>
+
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=2178925166179465&ev=PageView&noscript=1"/>
+  </noscript>
+
+  <style>
+    :root{
+      --bg:#070b10;
+      --card:#0f172a;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --line:#22c55e;
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+      background: radial-gradient(900px 600px at 50% -10%, rgba(34,197,94,.16), transparent 55%), var(--bg);
+      color:var(--text);
+      display:flex;
+      min-height:100vh;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+    }
+    .card{
+      width:100%;
+      max-width:460px;
+      background: rgba(15,23,42,.85);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding:18px 16px;
+      box-shadow: var(--shadow);
+      text-align:center;
+      backdrop-filter: blur(10px);
+    }
+    .title{
+      font-size:20px;
+      font-weight:900;
+      margin: 4px 0 8px;
+      letter-spacing:.2px;
+    }
+    .desc{
+      font-size:14px;
+      line-height:1.6;
+      color:var(--muted);
+      margin:0 0 14px;
+    }
+    .btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      width:100%;
+      padding:14px 14px;
+      border-radius: 16px;
+      font-weight:900;
+      text-decoration:none;
+      background: linear-gradient(180deg, rgba(34,197,94,.96), rgba(22,163,74,.92));
+      border: 1px solid rgba(34,197,94,.55);
+      color:#06210f;
+      box-shadow: 0 10px 25px rgba(0,0,0,.35);
+      -webkit-tap-highlight-color: transparent;
+      user-select:none;
+    }
+    .btn:active{ transform: scale(.99); }
+    .small{
+      margin-top: 12px;
+      font-size:12px;
+      color: rgba(148,163,184,.9);
+      line-height:1.6;
+    }
+    .loader{
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border:4px solid rgba(255,255,255,.12);
+      border-top-color: rgba(34,197,94,.9);
+      margin: 0 auto 12px;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="loader"></div>
+    <div class="title">正在跳轉至 LINE…</div>
+    <p class="desc">
+      系統將在 <b><span id="sec">1</span></b> 秒內自動帶你前往<br/>
+      VIP 兌換入口（VIP7777）
+    </p>
+
+    <a class="btn" id="go" href="https://line.me/R/app/2008156723-E1ynJx1P?redeemcode=VIP7777">
+      立即前往 LINE 領取
+    </a>
+
+    <div class="small">
+      若未自動跳轉，請點上方按鈕。<br/>
+      建議使用手機瀏覽器開啟。
+    </div>
+  </main>
+
+  <script>
+    const TARGET = "https://line.me/R/app/2008156723-E1ynJx1P?redeemcode=VIP7777";
+    const goBtn = document.getElementById("go");
+
+    // 倒數顯示
+    let ms = 1200;
+    const secEl = document.getElementById("sec");
+    const timer = setInterval(() => {
+      ms -= 100;
+      const s = Math.max(0, Math.ceil(ms / 1000));
+      secEl.textContent = s;
+      if(ms <= 0) clearInterval(timer);
+    }, 100);
+
+    // ============ (A) 點擊按鈕事件 ============
+    goBtn.addEventListener("click", function(e){
+      // 先送事件，再跳轉（避免事件來不及送出）
+      try{
+        fbq('track', 'Lead', {
+          content_name: 'Click_to_LINE',
+          redeem_code: 'VIP7777',
+          target: 'LINE_APP'
+        });
+      }catch(err){}
+
+      // 阻止立即跳轉，讓 pixel 有時間送出
+      e.preventDefault();
+
+      // 200ms 後跳轉
+      setTimeout(() => {
+        window.location.href = TARGET;
+      }, 200);
+    });
+
+    // ============ (B) 自動跳轉事件 ============
+    // 你要的「跳轉成功」只能做成「跳轉前送出」
+    setTimeout(() => {
+      try{
+        fbq('track', 'CompleteRegistration', {
+          content_name: 'AutoRedirect_to_LINE',
+          redeem_code: 'VIP7777',
+          target: 'LINE_APP'
+        });
+      }catch(err){}
+    }, 900);
+
+    // 1.2 秒後跳轉
+    setTimeout(() => {
+      window.location.href = TARGET;
+    }, 1200);
+  </script>
+</body>
+</html>
