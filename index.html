@@ -15,13 +15,17 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)
 }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-fbq('init','2178925166179465',{},{autoConfig:false});
+fbq('init','2178925166179465');
+fbq('init','1646970479225047');
+
 fbq('track','PageView');
 </script>
 
 <noscript>
 <img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2178925166179465&ev=PageView&noscript=1" />
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1646970479225047&ev=PageView&noscript=1" />
 </noscript>
 
 <style>
@@ -215,7 +219,9 @@ function eventId(){
 function goLine(trackName){
   try{
     if(typeof fbq === "function" && trackName){
-      fbq("track", trackName, {}, { eventID: eventId() });
+      const eid = eventId();
+      fbq("trackSingle","2178925166179465", trackName, {}, {eventID:eid});
+      fbq("trackSingle","1646970479225047", trackName, {}, {eventID:eid});
     }
   }catch(e){}
 
@@ -223,7 +229,6 @@ function goLine(trackName){
     window.location.href = TARGET_URL;
   }, 450);
 }
-
 document.getElementById("ctaBtn").addEventListener("click", () => {
   goLine("Lead");
 });
