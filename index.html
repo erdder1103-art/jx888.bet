@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>橙總派對</title>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init','1646970479225047');
+fbq('track','PageView');
+</script>
+
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1646970479225047&ev=PageView&noscript=1"/>
+</noscript>
+
+<style>
+body{
+  margin:0;
+  background:#000;
+  font-family:system-ui,-apple-system,"PingFang TC","Noto Sans TC",Arial;
+}
+.wrapper{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+.frame{
+  position:relative;
+  width:100%;
+  max-width:420px;
+  aspect-ratio:9/16;
+  overflow:hidden;
+}
+.bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.logo{
+  position:absolute;
+  top:5%;
+  left:10%;
+  transform:translateX(10%);
+  width:60%;
+}
+.ip{
+  position:absolute;
+  bottom:10%;
+  left:50%;
+  transform:translateX(-50%);
+  width:90%;
+}
+.btnWrapper{
+  position:absolute;
+  bottom:6%;
+  left:50%;
+  transform:translateX(-50%);
+  width:80%;
+}
+.btn{
+  width:100%;
+  cursor:pointer;
+  display:block;
+  animation:breath 1.8s ease-in-out infinite;
+}
+@keyframes breath{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+<div class="frame">
+
+<img src="assets/bg.jpg" class="bg">
+<img src="assets/logo.png" class="logo">
+<img src="assets/ip.png" class="ip">
+
+<div class="btnWrapper">
+  <a href="https://line.me/R/ti/p/@h1788" id="lineBtn">
+    <img src="assets/btn.png" class="btn">
+  </a>
+</div>
+
+</div>
+</div>
+
+<script>
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){
+    var r=Math.random()*16|0,v=c=='x'?r:(r&0x3|0x8);
+    return v.toString(16);
+  });
+}
+
+document.getElementById("lineBtn").addEventListener("click",function(){
+  const eventId = uuidv4();
+
+  fbq('track','Lead',
+    { content_name:'line_click' },
+    { eventID:eventId }
+  );
+});
+</script>
+
+</body>
+</html>
