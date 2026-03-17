@@ -15,7 +15,8 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 fbq('init','1646970479225047');
 fbq('init','1319847283283747');
 
-fbq('track','PageView');
+fbq('trackSingle','1646970479225047','PageView');
+fbq('trackSingle','1319847283283747','PageView');
 </script>
 
 <noscript>
@@ -120,17 +121,24 @@ document.getElementById("lineBtn").addEventListener("click",function(e){
 
   const eventId=uuidv4();
 
+  const params={content_name:'line_click'};
+  const opt={eventID:eventId};
+
   try{
-    fbq('track','Contact',{content_name:'line_click'},{eventID:eventId});
+    fbq('trackSingle','1646970479225047','Contact',params,opt);
   }catch(e){}
 
   try{
-    fbq('track','Lead',{content_name:'line_click'},{eventID:eventId});
+    fbq('trackSingle','1319847283283747','Contact',params,opt);
+  }catch(e){}
+
+  try{
+    fbq('trackCustom','LineClick',params);
   }catch(e){}
 
   setTimeout(function(){
     window.location.href="https://line.me/R/ti/p/@h1788";
-  },150);
+  },400);
 });
 </script>
 
