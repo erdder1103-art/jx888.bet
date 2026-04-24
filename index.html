@@ -9,7 +9,10 @@
   <!-- Meta Pixel Code -->
   <script>
     window.APP_CONFIG = {
-      PIXEL_ID: '964470036481888',
+      PIXEL_IDS: [
+        '964470036481888',
+        '911833795220495'
+      ],
       LINE_URL: 'https://line.me/R/ti/p/@h1788',
       REDIRECT_DELAY: 800
     };
@@ -31,248 +34,99 @@
       s.parentNode.insertBefore(t,s);
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-    fbq('init', window.APP_CONFIG.PIXEL_ID);
+    window.APP_CONFIG.PIXEL_IDS.forEach(function(id){
+      fbq('init', id);
+    });
+
     fbq('track', 'PageView');
   </script>
 
   <noscript>
-    <img
-      height="1"
-      width="1"
-      style="display:none"
-      src="https://www.facebook.com/tr?id=964470036481888&ev=PageView&noscript=1"
-      alt=""
-    />
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=964470036481888&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=911833795220495&ev=PageView&noscript=1"/>
   </noscript>
-  <!-- End Meta Pixel Code -->
 
   <style>
-    *{
-      box-sizing:border-box;
-    }
-
-    body{
-      margin:0;
-      background:#000;
-      font-family:system-ui,-apple-system,"PingFang TC","Noto Sans TC",Arial,sans-serif;
-    }
-
-    .wrapper{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      min-height:100vh;
-    }
-
-    .frame{
-      position:relative;
-      width:100%;
-      max-width:420px;
-      aspect-ratio:9/16;
-      overflow:hidden;
-      background:#000;
-    }
-
-    .bg{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      user-select:none;
-      -webkit-user-drag:none;
-    }
-
-    .logo{
-      position:absolute;
-      top:5%;
-      left:10%;
-      transform:translateX(10%);
-      width:60%;
-      display:block;
-      pointer-events:none;
-      user-select:none;
-      -webkit-user-drag:none;
-    }
-
-    .ip{
-      position:absolute;
-      bottom:10%;
-      left:50%;
-      transform:translateX(-50%);
-      width:90%;
-      display:block;
-      pointer-events:none;
-      user-select:none;
-      -webkit-user-drag:none;
-    }
-
-    .btnWrapper{
-      position:absolute;
-      bottom:6%;
-      left:50%;
-      transform:translateX(-50%);
-      width:80%;
-      z-index:5;
-    }
-
-    .goLine{
-      display:block;
-      width:100%;
-      text-decoration:none;
-      -webkit-tap-highlight-color:transparent;
-      outline:none;
-    }
-
-    .btn{
-      width:100%;
-      display:block;
-      cursor:pointer;
-      user-select:none;
-      -webkit-user-drag:none;
-      animation:breath 1.8s ease-in-out infinite;
-    }
-
-    .goLine.is-disabled{
-      pointer-events:none;
-      opacity:0.98;
-    }
-
-    @keyframes breath{
-      0%{transform:scale(1);}
-      50%{transform:scale(1.08);}
-      100%{transform:scale(1);}
-    }
+    *{box-sizing:border-box;}
+    body{margin:0;background:#000;font-family:system-ui;}
+    .wrapper{display:flex;justify-content:center;align-items:center;min-height:100vh;}
+    .frame{position:relative;width:100%;max-width:420px;aspect-ratio:9/16;overflow:hidden;background:#000;}
+    .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+    .logo{position:absolute;top:5%;left:10%;width:60%;}
+    .ip{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);width:90%;}
+    .btnWrapper{position:absolute;bottom:6%;left:50%;transform:translateX(-50%);width:80%;z-index:5;}
+    .goLine{display:block;width:100%;}
+    .btn{width:100%;animation:breath 1.8s infinite;}
+    @keyframes breath{0%{transform:scale(1);}50%{transform:scale(1.08);}100%{transform:scale(1);}}
   </style>
 </head>
 
 <body>
-  <div class="wrapper">
-    <div class="frame">
-      <img src="assets/bg.jpg" class="bg" alt="" loading="eager">
-      <img src="assets/logo.png" class="logo" alt="" loading="eager">
-      <img src="assets/ip.png" class="ip" alt="" loading="eager">
+<div class="wrapper">
+  <div class="frame">
+    <img src="assets/bg.jpg" class="bg">
+    <img src="assets/logo.png" class="logo">
+    <img src="assets/ip.png" class="ip">
 
-      <div class="btnWrapper">
-        <a
-          href="https://line.me/R/ti/p/@h1788"
-          class="goLine"
-          data-area="main_cta"
-          rel="noopener"
-          aria-label="加入官方LINE"
-        >
-          <img src="assets/btn.png" class="btn" alt="加入官方LINE" loading="eager">
-        </a>
-      </div>
+    <div class="btnWrapper">
+      <a href="https://line.me/R/ti/p/@h1788" class="goLine" data-area="main_cta">
+        <img src="assets/btn.png" class="btn">
+      </a>
     </div>
   </div>
+</div>
 
-  <script>
-    (function () {
-      var PIXEL_ID = window.APP_CONFIG.PIXEL_ID;
-      var LINE_URL = window.APP_CONFIG.LINE_URL;
-      var REDIRECT_DELAY = window.APP_CONFIG.REDIRECT_DELAY;
-      var hasClicked = false;
-      var redirectTimer = null;
+<script>
+(function () {
 
-      function uuidv4() {
-        if (window.crypto && typeof window.crypto.randomUUID === "function") {
-          return window.crypto.randomUUID();
-        }
-        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
-          var r = Math.random() * 16 | 0;
-          var v = c === "x" ? r : (r & 0x3 | 0x8);
-          return v.toString(16);
-        });
-      }
+  var LINE_URL = window.APP_CONFIG.LINE_URL;
+  var REDIRECT_DELAY = window.APP_CONFIG.REDIRECT_DELAY;
+  var hasClicked = false;
 
-      function sendTrack(eventName, params, options) {
-        try {
-          if (typeof fbq === "function") {
-            fbq("track", eventName, params, options);
-          }
-        } catch (e) {}
-      }
+  function uuid(){
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){
+      var r=Math.random()*16|0,v=c=='x'?r:(r&0x3|0x8);
+      return v.toString(16);
+    });
+  }
 
-      function sendTrackCustom(eventName, params, options) {
-        try {
-          if (typeof fbq === "function") {
-            fbq("trackCustom", eventName, params, options);
-          }
-        } catch (e) {}
-      }
+  function fireEvents(area){
 
-      function fireEvents(area) {
-        var eventId = uuidv4();
+    var base = {
+      content_name:"line_contact_click",
+      content_category:"line_redirect",
+      contact_method:"line",
+      click_area:area,
+      destination:"official_line"
+    };
 
-        var contactParams = {
-          content_name: "line_contact_click",
-          content_category: "line_redirect",
-          contact_method: "line",
-          click_area: area || "main_cta",
-          destination: "official_line"
-        };
+    fbq('track','Contact',base,{eventID:'c_'+uuid()});
+    fbq('track','Lead',base,{eventID:'l_'+uuid()});
+    fbq('trackCustom','LineClick',base,{eventID:'lc_'+uuid()});
+  }
 
-        var customParams = {
-          click_area: area || "main_cta",
-          destination: "official_line",
-          contact_method: "line"
-        };
+  function handleClick(e){
+    e.preventDefault();
+    if(hasClicked) return;
+    hasClicked = true;
 
-        sendTrack("Contact", contactParams, { eventID: eventId });
-        sendTrackCustom("LineClick", customParams, { eventID: eventId });
-      }
+    var area = this.dataset.area || "main_cta";
 
-      function goToLine() {
-        window.location.href = LINE_URL;
-      }
+    fireEvents(area);
 
-      function resetState() {
-        hasClicked = false;
-        if (redirectTimer) {
-          clearTimeout(redirectTimer);
-          redirectTimer = null;
-        }
-        document.querySelectorAll(".goLine").forEach(function(link) {
-          link.classList.remove("is-disabled");
-          link.style.pointerEvents = "";
-        });
-      }
+    setTimeout(function(){
+      window.location.href = LINE_URL;
+    }, REDIRECT_DELAY);
+  }
 
-      function handleClick(e) {
-        e.preventDefault();
+  document.querySelectorAll('.goLine').forEach(function(el){
+    el.addEventListener('click', handleClick);
+  });
 
-        if (hasClicked) return;
-        hasClicked = true;
+})();
+</script>
 
-        var area = this.getAttribute("data-area") || "main_cta";
-
-        document.querySelectorAll(".goLine").forEach(function(link) {
-          link.classList.add("is-disabled");
-          link.style.pointerEvents = "none";
-        });
-
-        fireEvents(area);
-
-        redirectTimer = setTimeout(function () {
-          goToLine();
-        }, REDIRECT_DELAY);
-      }
-
-      var links = document.querySelectorAll(".goLine");
-      links.forEach(function(link) {
-        link.addEventListener("click", handleClick, { passive: false });
-      });
-
-      window.addEventListener("pageshow", function(event) {
-        if (event.persisted) {
-          resetState();
-        } else {
-          hasClicked = false;
-        }
-      });
-    })();
-  </script>
 </body>
 </html>
