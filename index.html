@@ -9,10 +9,7 @@
   <!-- Meta Pixel Code -->
   <script>
     window.APP_CONFIG = {
-      PIXEL_IDS: [
-        '26596318236695809',
-        '911833795220495'
-      ],
+      PIXEL_ID: '26596318236695809',
       LINE_URL: 'https://line.me/R/ti/p/@h1788',
       REDIRECT_DELAY: 800
     };
@@ -34,18 +31,13 @@
       s.parentNode.insertBefore(t,s);
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-    window.APP_CONFIG.PIXEL_IDS.forEach(function(id){
-      fbq('init', id);
-    });
-
+    fbq('init', window.APP_CONFIG.PIXEL_ID);
     fbq('track', 'PageView');
   </script>
 
   <noscript>
     <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=964470036481888&ev=PageView&noscript=1"/>
-    <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=911833795220495&ev=PageView&noscript=1"/>
+      src="https://www.facebook.com/tr?id=26596318236695809&ev=PageView&noscript=1"/>
   </noscript>
 
   <style>
@@ -80,7 +72,6 @@
 
 <script>
 (function () {
-
   var LINE_URL = window.APP_CONFIG.LINE_URL;
   var REDIRECT_DELAY = window.APP_CONFIG.REDIRECT_DELAY;
   var hasClicked = false;
@@ -93,12 +84,11 @@
   }
 
   function fireEvents(area){
-
     var base = {
       content_name:"line_contact_click",
       content_category:"line_redirect",
       contact_method:"line",
-      click_area:area,
+      click_area:area || "main_cta",
       destination:"official_line"
     };
 
@@ -113,7 +103,6 @@
     hasClicked = true;
 
     var area = this.dataset.area || "main_cta";
-
     fireEvents(area);
 
     setTimeout(function(){
@@ -122,9 +111,8 @@
   }
 
   document.querySelectorAll('.goLine').forEach(function(el){
-    el.addEventListener('click', handleClick);
+    el.addEventListener('click', handleClick, { passive:false });
   });
-
 })();
 </script>
 
